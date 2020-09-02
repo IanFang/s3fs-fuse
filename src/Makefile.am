@@ -17,15 +17,16 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ######################################################################
-bin_PROGRAMS=s3fs
+# bin_PROGRAMS=s3fs
+noinst_LIBRARIES=libs3fs-df.a
 
 AM_CPPFLAGS = $(DEPS_CFLAGS)
 if USE_GNUTLS_NETTLE
   AM_CPPFLAGS += -DUSE_GNUTLS_NETTLE
 endif
 
-s3fs_SOURCES = \
-  s3fs.cpp \
+libs3fs_df_a_SOURCES = \
+  s3fs-df.cpp \
   curl.cpp \
   cache.cpp \
   string_util.cpp \
@@ -34,17 +35,19 @@ s3fs_SOURCES = \
   common_auth.cpp \
   addhead.cpp \
   sighandlers.cpp
+
 if USE_SSL_OPENSSL
-  s3fs_SOURCES += openssl_auth.cpp
+  libs3fs_df_a_SOURCES += openssl_auth.cpp
 endif
 if USE_SSL_GNUTLS
-  s3fs_SOURCES += gnutls_auth.cpp
+  libs3fs_df_a_SOURCES += gnutls_auth.cpp
 endif
 if USE_SSL_NSS
-  s3fs_SOURCES += nss_auth.cpp
+  libs3fs_df_a_SOURCES += nss_auth.cpp
 endif
 
-s3fs_LDADD = $(DEPS_LIBS)
+# s3fs_LDADD = $(DEPS_LIBS)
+libs3fs_df_a_LIBADD = $(DEPS_LIBS)
 
 noinst_PROGRAMS = test_string_util
 

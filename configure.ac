@@ -28,6 +28,7 @@ AM_INIT_AUTOMAKE([foreign])
 
 AC_PROG_CXX
 AC_PROG_CC
+AC_PROG_RANLIB
 
 AC_CHECK_HEADERS([sys/xattr.h])
 AC_CHECK_HEADERS([attr/xattr.h])
@@ -238,7 +239,7 @@ dnl malloc_trim function
 AC_CHECK_FUNCS([malloc_trim])
 
 dnl clock_gettime function(macos)
-AC_SEARCH_LIBS([clock_gettime],[rt posix4]) 
+AC_SEARCH_LIBS([clock_gettime],[rt posix4])
 AC_CHECK_FUNCS([clock_gettime])
 
 dnl ----------------------------------------------
