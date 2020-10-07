@@ -4669,6 +4669,23 @@ int df_s3fs_init(char *source, char *s3_bucket, char *s3_passwd_file)
     exit(EXIT_FAILURE);
   }
 
+  // now passing things off to fuse, fuse will finish evaluating the command line args
+  // fuse_res = fuse_main(custom_args.argc, custom_args.argv, &s3fs_oper, NULL);
+  // fuse_opt_free_args(&custom_args);
+
+  // Destroy curl
+  // if(!S3fsCurl::DestroyS3fsCurl()){
+  //   S3FS_PRN_WARN("Could not release curl library.");
+  // }
+  // s3fs_destroy_global_ssl();
+
+  // // cleanup xml2
+  // xmlCleanupParser();
+  // S3FS_MALLOCTRIM(0);
+
+}
+
+void df_s3fs_oper_init() {
   s3fs_oper.getattr   = s3fs_getattr;
   s3fs_oper.readlink  = s3fs_readlink;
   s3fs_oper.mknod     = s3fs_mknod;
@@ -4708,20 +4725,6 @@ int df_s3fs_init(char *source, char *s3_bucket, char *s3_passwd_file)
     s3fs_oper.listxattr   = s3fs_listxattr;
     s3fs_oper.removexattr = s3fs_removexattr;
   }
-
-  // now passing things off to fuse, fuse will finish evaluating the command line args
-  // fuse_res = fuse_main(custom_args.argc, custom_args.argv, &s3fs_oper, NULL);
-  // fuse_opt_free_args(&custom_args);
-
-  // Destroy curl
-  // if(!S3fsCurl::DestroyS3fsCurl()){
-  //   S3FS_PRN_WARN("Could not release curl library.");
-  // }
-  // s3fs_destroy_global_ssl();
-
-  // // cleanup xml2
-  // xmlCleanupParser();
-  // S3FS_MALLOCTRIM(0);
 
 }
 

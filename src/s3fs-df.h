@@ -31,6 +31,8 @@ static const int64_t FIVE_GB = 5LL * 1024LL * 1024LL * 1024LL;
 
 // used by s3fs_driver
 extern int df_s3fs_init(char *source, char *s3_bucket, char *s3_passwd_file);
+extern void df_s3fs_oper_init();
+
 extern struct fuse_operations s3fs_oper;
 
 #define S3FS_FUSE_EXIT() \
