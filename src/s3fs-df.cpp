@@ -4420,9 +4420,9 @@ static int set_bucket(const char* arg)
 }
 
 // already declared in header
-// struct fuse_operations s3fs_oper;
+struct fuse_operations s3fs_oper;
 
-int s3fs_init(char *source, char *s3_bucket, char *s3_passwd_file)
+int df_s3fs_init(char *source, char *s3_bucket, char *s3_passwd_file)
 // void main(int argc, char* argv[])
 {
   int ch;
@@ -4714,16 +4714,15 @@ int s3fs_init(char *source, char *s3_bucket, char *s3_passwd_file)
   // fuse_opt_free_args(&custom_args);
 
   // Destroy curl
-  if(!S3fsCurl::DestroyS3fsCurl()){
-    S3FS_PRN_WARN("Could not release curl library.");
-  }
-  s3fs_destroy_global_ssl();
+  // if(!S3fsCurl::DestroyS3fsCurl()){
+  //   S3FS_PRN_WARN("Could not release curl library.");
+  // }
+  // s3fs_destroy_global_ssl();
 
-  // cleanup xml2
-  xmlCleanupParser();
-  S3FS_MALLOCTRIM(0);
+  // // cleanup xml2
+  // xmlCleanupParser();
+  // S3FS_MALLOCTRIM(0);
 
-  exit(fuse_res);
 }
 
 /*
